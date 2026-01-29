@@ -1,0 +1,16 @@
+# Secrets
+.env
+pakhealth-d833f-firebase-adminsdk-fbsvc-0c02558847.json
+
+# Node
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
