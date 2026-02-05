@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 require('./config/database');
-const { startScheduler } = require('./src/services/reminderScheduler'); // ADD THIS LINE
+const { startScheduler } = require('./src/services/reminderScheduler');
 
 const app = express();
 
@@ -17,15 +17,14 @@ app.use((req, res, next) => {
   next();
 });
 
-// Import routes
-const authRoutes = require('./src/routes/Authroutes.js');
-const userRoutes = require('./src/routes/Userroutes');
-const sugarRoutes = require('./src/routes/Sugarroutes');
-const reminderRoutes = require('./src/routes/Reminderroutes');
+// Import routes (use consistent camelCase - must match actual filenames!)
+const authRoutes = require('./src/routes/authRoutes');
+const userRoutes = require('./src/routes/userRoutes');
+const sugarRoutes = require('./src/routes/sugarRoutes');
+const reminderRoutes = require('./src/routes/reminderRoutes');
 const footRoutes = require('./src/routes/footRoutes');
 const deviceRoutes = require('./src/routes/deviceRoutes');
 const notificationRoutes = require('./src/routes/notificationRoutes');
-
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -35,7 +34,6 @@ app.use('/api/reminders', reminderRoutes);
 app.use('/api/foot-health', footRoutes);
 app.use('/api/device', deviceRoutes);
 app.use('/api/notifications', notificationRoutes);
-
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -88,7 +86,7 @@ app.listen(PORT, () => {
   console.log(`📍 API URL: http://localhost:${PORT}`);
   console.log(`🏥 Health Check: http://localhost:${PORT}/api/health\n`);
   
-  // START REMINDER SCHEDULER - ADD THIS LINE
+  // Start reminder scheduler
   startScheduler();
 });
 
