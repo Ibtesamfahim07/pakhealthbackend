@@ -23,6 +23,7 @@
     "firebase-admin": "^13.6.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.6.5",
+    "node-cron": "^4.2.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

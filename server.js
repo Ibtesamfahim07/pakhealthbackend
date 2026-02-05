@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
-require('./config/database'); // Initialize database connection
+require('./config/database');
+const { startScheduler } = require('./src/services/reminderScheduler'); // ADD THIS LINE
 
 const app = express();
 
@@ -23,6 +24,7 @@ const sugarRoutes = require('./src/routes/Sugarroutes');
 const reminderRoutes = require('./src/routes/Reminderroutes');
 const footRoutes = require('./src/routes/footRoutes');
 const deviceRoutes = require('./src/routes/deviceRoutes');
+const notificationRoutes = require('./src/routes/notificationRoutes');
 
 
 // Routes
@@ -32,6 +34,7 @@ app.use('/api/sugar', sugarRoutes);
 app.use('/api/reminders', reminderRoutes);
 app.use('/api/foot-health', footRoutes);
 app.use('/api/device', deviceRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 
 // Health check endpoint
@@ -55,7 +58,8 @@ app.get('/', (req, res) => {
       sugar: '/api/sugar',
       reminders: '/api/reminders',
       footHealth: '/api/foot-health',
-      device: '/api/device'
+      device: '/api/device',
+      notifications: '/api/notifications'
     }
   });
 });
@@ -83,6 +87,9 @@ app.listen(PORT, () => {
   console.log(`\n🚀 Server running on port ${PORT}`);
   console.log(`📍 API URL: http://localhost:${PORT}`);
   console.log(`🏥 Health Check: http://localhost:${PORT}/api/health\n`);
+  
+  // START REMINDER SCHEDULER - ADD THIS LINE
+  startScheduler();
 });
 
 module.exports = app;
