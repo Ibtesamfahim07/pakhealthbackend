@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const reminderController = require('../controllers/Remindercontroller');
+const reminderController = require('../controllers/remindercontroller');
 const authMiddleware = require('../middleware/authMiddleware');
 
 // All routes require authentication
