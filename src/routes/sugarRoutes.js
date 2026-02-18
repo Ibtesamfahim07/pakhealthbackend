@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const sugarController = require('../controllers/sugarcontroller');
+const sugarController = require('../controllers/sugarController');
 const authMiddleware = require('../middleware/authMiddleware');
 
 // All routes require authentication
